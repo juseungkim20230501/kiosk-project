@@ -6,5 +6,6 @@ const itemController = new ItemController();
 
 itemRouter.post('/item', itemController.createItem);
 itemRouter.get('/item', itemController.getItem);
+itemRouter.get('/item/:type', itemController.getItemsByType);
 
 module.exports = itemRouter;

@@ -1,3 +1,4 @@
+const { where } = require('sequelize');
 const ItemService = require('../services/item.service');
 
 class ItemController {
@@ -27,6 +28,19 @@ class ItemController {
       const getItemData = await this.itemService.getItem();
 
       res.status(200).json({ data: getItemData });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ errorMessage: '상품 조회의 실패하였습니다.' });
+    }
+  };
+
+  getItemsByType = async (req, res) => {
+    try {
+      const { type } = req.params;
+
+      const getItemsByTypeData = await this.itemService.getItemsByType(type);
+
+      res.status(200).json({ data: getItemsByTypeData });
     } catch (error) {
       console.error(error);
       res.status(500).json({ errorMessage: '상품 조회의 실패하였습니다.' });

@@ -18,6 +18,12 @@ class ItemRepository {
 
     return getItemData;
   };
+
+  getItemsByType = async (type) => {
+    const getItemsByTypeData = await Item.findAll({ where: { type } });
+
+    return getItemsByTypeData;
+  };
 }
 
 module.exports = ItemRepository;

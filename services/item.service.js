@@ -1,5 +1,5 @@
 const ItemRepository = require('../repositories/item.repository');
-const { Item } = require('../models');
+const validTypes = ['coffee', 'juice', 'food'];
 
 class ItemService {
   itemRepository = new ItemRepository();
@@ -9,7 +9,6 @@ class ItemService {
       throw new Error('상품명, 가격을 입력해주세요.');
     }
 
-    const validTypes = ['coffee', 'juice', 'food'];
     if (!validTypes.includes(type)) {
       throw new Error('알맞은 타입을 입력해주세요.');
     }
@@ -29,6 +28,16 @@ class ItemService {
     const getItemData = await this.itemRepository.getItem();
 
     return getItemData;
+  };
+
+  getItemsByType = async (type) => {
+    console.log(type);
+    if (!validTypes.includes(type)) {
+      throw new Error('알맞은 타입을 입력해주세요.');
+    }
+    const getItemsByTypeData = await this.itemRepository.getItemsByType(type);
+
+    return getItemsByTypeData;
   };
 }
 
