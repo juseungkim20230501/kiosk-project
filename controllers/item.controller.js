@@ -1,4 +1,3 @@
-const { where } = require('sequelize');
 const ItemService = require('../services/item.service');
 
 class ItemController {
@@ -16,10 +15,12 @@ class ItemController {
         amount
       );
 
-      res.status(201).json({ data: createItemData });
+      return res.status(201).json({ data: createItemData });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ errorMessage: '상품 추가에 실패하였습니다.' });
+      return res
+        .status(500)
+        .json({ errorMessage: '상품 추가에 실패하였습니다.' });
     }
   };
 
@@ -27,10 +28,12 @@ class ItemController {
     try {
       const getItemData = await this.itemService.getItem();
 
-      res.status(200).json({ data: getItemData });
+      return res.status(200).json({ data: getItemData });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ errorMessage: '상품 조회의 실패하였습니다.' });
+      return res
+        .status(500)
+        .json({ errorMessage: '상품 조회의 실패하였습니다.' });
     }
   };
 
@@ -40,10 +43,43 @@ class ItemController {
 
       const getItemsByTypeData = await this.itemService.getItemsByType(type);
 
-      res.status(200).json({ data: getItemsByTypeData });
+      return res.status(200).json({ data: getItemsByTypeData });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ errorMessage: '상품 조회의 실패하였습니다.' });
+      return res
+        .status(500)
+        .json({ errorMessage: '상품 조회의 실패하였습니다.' });
+    }
+  };
+
+  deleteItem = async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const check = await this.itemService.deleteItem(id);
+
+      return res.status(200).json({ message: check.message });
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ errorMessage: '상품 삭제에 실패하였습니다.' });
+    }
+  };
+
+  deleteConfirm = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { answer } = req.body;
+
+      const check = await this.itemService.deleteConfirm(id, answer);
+
+      return res.status(200).json({ message: check.message });
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ errorMessage: '상품 삭제에 실패하였습니다.' });
     }
   };
 }

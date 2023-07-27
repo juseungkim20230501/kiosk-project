@@ -24,6 +24,18 @@ class ItemRepository {
 
     return getItemsByTypeData;
   };
+
+  deleteItem = async (id) => {
+    const deleteItemData = await Item.destroy({ where: { id } });
+
+    return deleteItemData;
+  };
+
+  checkAmount = async (id) => {
+    const checkAmountData = await Item.findByPk(id);
+
+    return checkAmountData;
+  };
 }
 
 module.exports = ItemRepository;
