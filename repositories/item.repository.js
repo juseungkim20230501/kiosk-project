@@ -18,6 +18,24 @@ class ItemRepository {
 
     return getItemData;
   };
+
+  getItemsByType = async (type) => {
+    const getItemsByTypeData = await Item.findAll({ where: { type } });
+
+    return getItemsByTypeData;
+  };
+
+  deleteItem = async (id) => {
+    const deleteItemData = await Item.destroy({ where: { id } });
+
+    return deleteItemData;
+  };
+
+  checkAmount = async (id) => {
+    const checkAmountData = await Item.findByPk(id);
+
+    return checkAmountData;
+  };
 }
 
 module.exports = ItemRepository;
