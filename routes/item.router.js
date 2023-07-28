@@ -8,6 +8,7 @@ itemRouter.post('/item', itemController.createItem);
 itemRouter.get('/item', itemController.getItem);
 itemRouter.get('/item/:type', itemController.getItemsByType);
 itemRouter.delete('/item/:id', itemController.deleteItem);
-itemRouter.delete('/item/amount/:id', itemController.deleteConfirm)
+itemRouter.delete('/item/amount/:id', itemController.deleteConfirm);
+itemRouter.put('/item/:id', itemController.updateItem);
 
 module.exports = itemRouter;

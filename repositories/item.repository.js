@@ -36,6 +36,15 @@ class ItemRepository {
 
     return checkAmountData;
   };
+
+  updateItem = async (id, name, price) => {
+    const updateItemData = await Item.update(
+      { name, price },
+      { where: { id } }
+    );
+
+    return updateItemData;
+  };
 }
 
 module.exports = ItemRepository;
