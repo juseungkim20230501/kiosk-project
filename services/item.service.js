@@ -55,6 +55,23 @@ class ItemService {
       return { message: '상품 삭제를 취소하였습니다.' };
     }
   };
+
+  updateItem = async (id, name, price) => {
+    if (!name) {
+      throw new Error('상품명을 입력해주세요.');
+    }
+
+    if (price < 0) {
+      throw new Error('알맞은 가격을 입력해주세요.');
+    }
+
+    const updateItemData = await this.itemRepository.updateItem(
+      id,
+      name,
+      price
+    );
+    return updateItemData;
+  };
 }
 
 module.exports = ItemService;

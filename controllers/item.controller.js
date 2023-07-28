@@ -82,6 +82,22 @@ class ItemController {
         .json({ errorMessage: '상품 삭제에 실패하였습니다.' });
     }
   };
+
+  updateItem = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { name, price } = req.body;
+
+      await this.itemService.updateItem(id, name, price);
+
+      return res.status(200).json({ message: '상품 정보를 수정하였습니다.' });
+    } catch (error) {
+      console.error(error);
+      return res
+        .status(500)
+        .json({ errorMessage: '상품 정보 수정에 실패하였습니다.' });
+    }
+  };
 }
 
 module.exports = ItemController;
