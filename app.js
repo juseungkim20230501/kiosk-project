@@ -1,7 +1,7 @@
 const express = require('express');
 const { sequelize } = require('./models');
-const itemRoutes = require('./routes/item.router');
-const orderItemRoutes = require('./routes/order_item.router');
+const itemRoutes = require('./routes/item.route');
+const orderItemRoutes = require('./routes/order_item.route');
 
 class Server {
   constructor() {
