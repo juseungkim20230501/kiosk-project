@@ -23,7 +23,6 @@ class OrderItemService {
   };
 
   updateOrder = async (order_id, item_id, state) => {
-    try {
       const findOrderData = await this.orderItemRepository.findOrder(
         item_id,
         order_id
@@ -120,10 +119,6 @@ class OrderItemService {
       }
       // 잘못된 상태 변경 요청인 경우
       throw new Error('잘못된 상태 변경 요청입니다.');
-    } catch (error) {
-      console.error(error);
-      return 1;
-    }
   };
 }
 
