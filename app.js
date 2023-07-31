@@ -1,6 +1,7 @@
 const express = require('express');
 const { sequelize } = require('./models');
 const itemRoutes = require('./routes/item.router');
+const orderItemRoutes = require('./routes/order_item.router');
 
 class Server {
   constructor() {
@@ -11,6 +12,7 @@ class Server {
   initializeMiddleware() {
     this.app.use(express.json());
     this.app.use(itemRoutes);
+    this.app.use(orderItemRoutes);
   }
 
   async connectDatabase() {
