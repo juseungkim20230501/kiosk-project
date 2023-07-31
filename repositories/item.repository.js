@@ -33,7 +33,6 @@ class ItemRepository {
 
   checkAmount = async (id) => {
     const checkAmountData = await Item.findByPk(id);
-
     return checkAmountData;
   };
 
