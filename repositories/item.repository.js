@@ -44,6 +44,12 @@ class ItemRepository {
 
     return updateItemData;
   };
+
+  findItem = async (item_id) => {
+    const findItemData = await Item.findOne({ where: { id: item_id } });
+
+    return findItemData;
+  };
 }
 
 module.exports = ItemRepository;
