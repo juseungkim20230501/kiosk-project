@@ -19,6 +19,24 @@ class ItemOrderCustomerRepository {
     return itemOrderCustomerData;
   };
 
+  optionItemOrderCustomer = async (
+    item_id,
+    order_customer_id,
+    amount,
+    option,
+    sumPrice
+  ) => {
+    const itemOrderCustomerData = await ItemOrderCustomer.create({
+      item_id,
+      order_customer_id,
+      amount,
+      option,
+      price: sumPrice,
+    });
+
+    return itemOrderCustomerData;
+  };
+
   deleteItemOrderCustomer = async (order_customer_id) => {
     const deleteItemOrderCustomerData = await ItemOrderCustomer.destroy({
       where: { order_customer_id },

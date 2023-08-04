@@ -4,6 +4,7 @@ const itemRoutes = require('./routes/item.route');
 const orderItemRoutes = require('./routes/order_item.route');
 const orderCustomerRoutes = require('./routes/order_customer.route');
 const itemOrderCustomerRoutes = require('./routes/item_order_customer.route');
+const optionRoutes = require('./routes/option.route');
 
 class Server {
   constructor() {
@@ -18,6 +19,7 @@ class Server {
       orderItemRoutes,
       orderCustomerRoutes,
       itemOrderCustomerRoutes,
+      optionRoutes,
     ]);
   }
 

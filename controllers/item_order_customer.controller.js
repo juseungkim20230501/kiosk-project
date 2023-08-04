@@ -4,18 +4,23 @@ class ItemOrderCustomerController {
   itemOrderCustomerService = new ItemOrderCustomerService();
 
   itemOrderCustomer = async (req, res) => {
-    const { item_id, order_customer_id } = req.params;
-    const { amount, option } = req.body;
+    try {
+      const { item_id, order_customer_id } = req.params;
+      const { amount, option } = req.body;
 
-    const itemOrderCustomerData =
-      await this.itemOrderCustomerService.itemOrderCustomer(
-        item_id,
-        order_customer_id,
-        amount,
-        option
-      );
+      const itemOrderCustomerData =
+        await this.itemOrderCustomerService.itemOrderCustomer(
+          item_id,
+          order_customer_id,
+          amount,
+          option
+        );
 
-    return itemOrderCustomerData;
+      return res.status(201).json({ data: itemOrderCustomerData });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ errorMessage: '주문에 실패하였습니다.' });
+    }
   };
 }
 
